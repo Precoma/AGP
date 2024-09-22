@@ -21,5 +21,7 @@ public class Atividade {
     private String nome; 
     private String data_entrega;
     private String descricao;
+    private String materia;
+    private String professor;
     private boolean feita;
 }
