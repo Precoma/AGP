@@ -1,0 +1,22 @@
+server:
+  port: 9090
+  error:
+    include-message: always
+
+spring:
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update  # ou "create-drop" conforme sua necessidade
+  datasource:
+    url: jdbc:mysql://localhost:3306/agendareact  # é o nome do banco de dados no MySQL
+    username: root  # Nome de usuário MySQL
+    password: 1234  # Senha MySQL
+    driverClassName: com.mysql.cj.jdbc.Driver  # driver para MySQL
+  webmvc:
+    cors:
+      allowed-origins: "http://localhost:3000/"
+  sql:
+    init:
+      platform: mysql
