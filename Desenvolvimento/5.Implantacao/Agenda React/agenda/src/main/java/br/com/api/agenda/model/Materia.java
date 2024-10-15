@@ -17,25 +17,28 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "atividade")
+@Table(name = "materia")
 @Getter
 @Setter
-public class Atividade {
+public class Materia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome; 
-    private String data_entrega;
-    private String descricao;
-    private boolean feita;
+    private String nome;
+    private String sala;
+    private String dia_horario;
+
+    @OneToMany(mappedBy = "materia", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Atividade> atividades;
+
+    @OneToMany(mappedBy = "materia", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Avisos> avisos;
 
     @ManyToOne
-    @JoinColumn(name="materia_id")
-    private Materia materia;
-
-    @OneToMany(mappedBy = "atividade", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<AlunoAtividade> alunoatividades;
+    @JoinColumn(name="professor_id")
+    private Customer professor;
 }

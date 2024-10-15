@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping(path = "api/agenda/customer")
 @AllArgsConstructor
-@CrossOrigin(origins = "*") //Seu front-end de origem
+@CrossOrigin(origins = "*") 
 public class CustomerController {
 
     @Autowired
@@ -38,7 +37,6 @@ public class CustomerController {
         
         return customer != null && customer.getIsProfessor(); // Retorna true ou false
     } catch (Exception e) {
-        // Logar o erro para diagnóstico
         System.err.println("Erro ao obter status do professor: " + e.getMessage());
         return false; // ou lançar uma exceção
     }

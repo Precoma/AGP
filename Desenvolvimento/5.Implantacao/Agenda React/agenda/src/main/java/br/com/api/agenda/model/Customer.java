@@ -2,10 +2,7 @@ package br.com.api.agenda.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-/* 
-import java.time.LocalDate;
-import java.time.Period;
-*/
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,14 +11,7 @@ import java.time.Period;
 @ToString
 @EqualsAndHashCode
 @Entity
-@Table(
-        name = "customer",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "customer_email_unique", columnNames = "email"
-                )
-        }
-)
+
 public class Customer {
 
     @Id
@@ -40,48 +30,10 @@ public class Customer {
     )
     private Long id;
 
-    @Column(
-            name = "firstname",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
     private String firstname;
-
-    @Column(
-            name = "lastname",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
     private String lastname;
-
-    @Column(
-            name = "email",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
     private String email;
-
-   /*  @Column(
-            name = "dob",
-            updatable = true
-    )
-    private LocalDate dob;
-        */
-    @Column(
-            name = "password",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
     private String password;
-
-        @Column(
-        name = "professor",
-        nullable = false,
-        columnDefinition = "BOOLEAN"
-    )
     private Boolean isProfessor;
-/* 
-    public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }*/
+
 }
