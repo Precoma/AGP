@@ -9,6 +9,8 @@ import CadastroAtividade from "../Atividade/CadastrarAtividade";
 import AtividadeIndex from "../Atividade/AtividadeIndex";
 import AvisosIndex from "../Avisos/AvisosIndex";
 
+import '../estilos/atividade.css'
+
 
 function MateriaIndex(user){
 
@@ -201,31 +203,57 @@ function MateriaIndex(user){
       setMateriaId(materias[indice].id);
   }
 
-    return (
-        <div className="App">
-          <h1>Cadastrar Materia</h1>
+  return (
+    <div className="App">
+        <h1>Cadastrar Materia</h1>
 
-        <CadastrarMateria obj={objMateria} eventoTeclado={aoDigitar} cadastrar={cadastrarMateria} alterar={alterarMateria} botao={btnCadastrar} limparForm={limparFormulario} />
-        <TabelaMateria vetor={materias} remover={removerMateria} selecionarAtividade={selecionarMateriaAtividade} selecionarAvisos={selecionarMateriaAvisos}  />
-
-        {
-            materiaSelecionadaAtividade
-            ?
-            <AtividadeIndex materia={materiaId} selecionada={materiaSelecionadaAtividade} />
-            :
-            <div></div>
-        }
-
-        {
-            materiaSelecionadaAvisos
-            ?
-            <AvisosIndex materia={materiaId} selecionada={materiaSelecionadaAvisos} />
-            :
-            <div></div>
-        }
-
+        {/* Seção de cadastro de matéria */}
+        <div className="cadastro-atividade">
+            <CadastrarMateria 
+                obj={objMateria} 
+                eventoTeclado={aoDigitar} 
+                cadastrar={cadastrarMateria} 
+                alterar={alterarMateria} 
+                botao={btnCadastrar} 
+                limparForm={limparFormulario} 
+            />
         </div>
-      );
+
+        {/* Seção da tabela de matérias */}
+        <div className="tabela-materias">
+            <TabelaMateria 
+                vetor={materias} 
+                remover={removerMateria} 
+                selecionarAtividade={selecionarMateriaAtividade} 
+                selecionarAvisos={selecionarMateriaAvisos}  
+            />
+        </div>
+
+        {/* Seção de atividades, visível apenas se uma matéria for selecionada */}
+        <div className="atividades-index">
+            {materiaSelecionadaAtividade ? (
+                <AtividadeIndex 
+                    materia={materiaId} 
+                    selecionada={materiaSelecionadaAtividade} 
+                />
+            ) : (
+                <div></div>
+            )}
+        </div>
+
+        {/* Seção de avisos, visível apenas se uma matéria for selecionada */}
+        <div className="avisos-index">
+            {materiaSelecionadaAvisos ? (
+                <AvisosIndex 
+                    materia={materiaId} 
+                    selecionada={materiaSelecionadaAvisos} 
+                />
+            ) : (
+                <div></div>
+            )}
+        </div>
+    </div>
+);
   
 
 }

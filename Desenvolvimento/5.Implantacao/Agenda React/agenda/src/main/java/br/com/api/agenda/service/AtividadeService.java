@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import br.com.api.agenda.model.AlunoAtividade;
 import br.com.api.agenda.model.Atividade;
 import br.com.api.agenda.model.RespostaModelo;
@@ -30,10 +33,10 @@ public class AtividadeService {
     @Autowired
     private RespostaModelo rm;
 
-    // Listar
-    public Iterable<Atividade> listar(){
-        return ar.findAll();
-    }
+// Listar atividades por matéria com paginação
+public Page<Atividade> listarPorMateria(Long materiaId, Pageable pageable) {
+    return ar.findByMateriaId(materiaId, pageable);
+}
 
     // Cadastrar / Alterar
     public ResponseEntity<?> CadastrarAlterarAtividade(Atividade am, String acao){

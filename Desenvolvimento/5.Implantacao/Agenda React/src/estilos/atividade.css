@@ -79,3 +79,31 @@ h1 {
 	font-weight: bold;
 	letter-spacing: 1px;
 }
+
+
+.App {
+	padding: 20px;
+	min-height: 100vh; /* Garante que a página use toda a altura da janela */
+  }
+  
+  .container {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+  }
+  
+  .cadastro-atividade {
+	flex: 1;
+	margin-right: 20px; /* Espaço entre o cadastro e a tabela */
+  }
+  
+  .tabela-atividade {
+	flex: 2;
+  }
+  
+  .pagination {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+  }
+  

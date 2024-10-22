@@ -2,53 +2,62 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import TabelaAtividadeProf from './TabelaAtividadeProf'
 import CadastroAtividade from './CadastrarAtividade';
+import '../estilos/atividade.css'
 
 function AtividadeIndex(materia) {
+  const atividade = {
+    id: 0,
+    nome: '',
+    data_entrega: '',
+    descricao: '',
+    materia: {},
+    professor: '',
+    feita: false
+  };
 
-     // Objeto Atividade
-     const atividade = {
-        id: 0,
-        nome : '',
-        data_entrega: '',
-        descricao: '',
-        materia: {},
-        professor:'',
-        feita: false
-      }
-  
-  
-      //UseState
-      const[btnCadastrar, SetBtnCadastrar] = useState(true);
-      const[selecionada, SetSelecionada] = useState(false);
-      const[atividades, setAtividades] = useState([]);
+  const [btnCadastrar, SetBtnCadastrar] = useState(true);
+  const [selecionada, setSelecionada] = useState(false);
+  const [atividades, setAtividades] = useState([]);
+  const [objAtividade, setObjAtividade] = useState(atividade);
+  const [page, setPage] = useState(0); // Página atual
+  const [size, setSize] = useState(3); // Tamanho da página
+  const [totalPages, setTotalPages] = useState(0); // Total de páginas
 
-      const [objAtividade, setObjAtividade] = useState(atividade);
-
-      useEffect(() => {
-        // Atualiza o objeto Atividade sempre que a matéria for alterada
-        setObjAtividade(prevState => ({
-            ...prevState,
-            materia: { id: materia.materia }  // Atualizando o ID da matéria no objeto atividade
-        }));
-    }, [materia.materia]);  // Esse useEffect será disparado sempre que a prop 'materia' mudar
-
-  
-  
-   // Fetch para buscar atividades
   useEffect(() => {
-    fetch("http://localhost:8080/listar-atividade")
-      .then(atividadesRetorno => atividadesRetorno.json())
-      .then(atividadesRetorno_convertido => {
-        // Se houver uma matéria selecionada, filtrar as atividades por id da matéria
-        if (materia && materia.materia) {
-          const atividadesFiltradas = atividadesRetorno_convertido.filter(atividade => atividade.materia.id === materia.materia);
-          setAtividades(atividadesFiltradas);
-          SetSelecionada(true);
-        } else {
-          setAtividades(atividadesRetorno_convertido); // Caso não haja matéria selecionada, exibir todas
-        }
-      });
-  }, [materia]); // O useEffect será executado quando a matéria mudar
+    setObjAtividade(prevState => ({
+      ...prevState,
+      materia: { id: materia.materia }
+    }));
+    setPage(0);
+  }, [materia.materia]);
+
+  // Fetch para buscar atividades da matéria selecionada com paginação
+  useEffect(() => {
+    if (materia.materia) {
+      fetch(`http://localhost:8080/listar-atividade/materia/${materia.materia}?page=${page}&size=${size}`)
+        .then(response => response.json())
+        .then(data => {
+          setAtividades(data.content);
+          setTotalPages(data.totalPages);
+          setSelecionada(true);
+        });
+    }
+  }, [materia, page, size]); // O useEffect será executado quando a matéria ou a página mudar
+
+  
+
+  // Funções de navegação
+  const proximaPagina = () => {
+    if (page < totalPages - 1) {
+      setPage(page + 1);
+    }
+  };
+
+  const paginaAnterior = () => {
+    if (page > 0) {
+      setPage(page - 1);
+    }
+  };
 
     //Obtendo os dados do formulario
     const aoDigitar = (e) => {
@@ -145,9 +154,12 @@ function AtividadeIndex(materia) {
   
     //Limpar Formulario
     const limparFormulario = () => {
-      setObjAtividade(atividade);
+      setObjAtividade({
+        ...atividade,  // Restabelece os campos da atividade
+        materia: { id: materia.materia }  // Mantém o ID da matéria
+      });
       SetBtnCadastrar(true);
-    }
+    };
   
       //Selecionar Atividade
       const selecionarAtividade = (indice) => {
@@ -162,13 +174,17 @@ function AtividadeIndex(materia) {
       <div className="App">
         <h1>Atividades</h1>
         {
-            selecionada
-            ?
-            <div> <CadastroAtividade obj={objAtividade} eventoTeclado={aoDigitar} cadastrar={cadastrarAtividade} alterar={alterarAtividade} botao={btnCadastrar} /> </div>
-            :
-            <div> </div>
+          selecionada &&
+          <div className="cadastro-atividade">
+            <CadastroAtividade obj={objAtividade} eventoTeclado={aoDigitar} cadastrar={cadastrarAtividade} alterar={alterarAtividade} botao={btnCadastrar} />
+          </div>
         }
         <TabelaAtividadeProf vetor={atividades} remover={removerAtividade} selecionar={selecionarAtividade} />
+        <div className="pagination">
+          <button onClick={paginaAnterior} disabled={page === 0}>Anterior</button>
+          <span>Página {page + 1} de {totalPages}</span>
+          <button onClick={proximaPagina} disabled={page >= totalPages - 1}>Próxima</button>
+        </div>
       </div>
     );
 }

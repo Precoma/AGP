@@ -31,9 +31,12 @@ function HomeProfessor({ user, onLogout }) {
               </ul>
             </div>
           )}
+          
         </div>
       </nav>
-      <MateriaIndex user={user} />
+
+      <div className='container' > <MateriaIndex user={user} /> 
+      </div>
     </div>
   );
 }
