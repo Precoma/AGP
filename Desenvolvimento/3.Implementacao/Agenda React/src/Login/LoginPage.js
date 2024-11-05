@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../estilos/login_register.css';
+import Logo from './logo.jsx';  
 
 function LoginPage({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  
+
   const handleLogin = async () => {
     try {
       const url = `http://localhost:8080/get?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
@@ -22,14 +24,10 @@ function LoginPage({ onLogin }) {
       if (isProfessor) {
         navigate('/HomeProf');  // Se professor for true (1), redireciona para HomeProf
         console.log(userData); // Verifique se o firstname está presente
-   
+
       } else {
         navigate('/HomeAluno'); // Se professor for false (0), redireciona para HomeAluno
       }
-
-
-
-
 
       onLogin(userData);
 
@@ -41,16 +39,20 @@ function LoginPage({ onLogin }) {
   return (
     <div className='login-container'>
       <div className="login-form">
-        <h2>Logue na sua conta</h2>
+        <Logo/>
+        <h2>Entre na sua conta:</h2>
         <div className="input-container">
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="input-container">
           <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button className = "login-button" type = "button"onClick={handleLogin}>Login</button>
+        <button className="login-button" type="button" onClick={handleLogin}>Login</button>
       </div>
-      </div>
+      <p className = "registration-link">
+        Não possui uma conta? Clique <a href="/register">aqui</a> para se registrar
+      </p>
+    </div>
   );
 }
 

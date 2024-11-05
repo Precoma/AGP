@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../App.css';
+import '../estilos/login_register.css'; 
+import Logo from './logo.jsx';  
 
 function RegistrationPage() {
   const [firstname, setFirstName] = useState('');
@@ -40,23 +42,22 @@ try {
 
   if (registrationSuccess) {
     return (
-    <div className='centered-container'>
       <div className="login-container">
-      <h1>Conta criada com sucesso!</h1>
+      <h3>Conta criada com sucesso!</h3>
       <h2> </h2>
       <div className="registration-link">
-        <p>Para acessar sua nova conta <a href="/">Faça Login </a></p>
+        <p>Para acessar sua nova conta, clique <a href="/">aqui</a></p>
       </div>
       </div>
-
-    </div>);
+      );
   }
 //<input type="date" placeholder="Data de nascimento" value={dob} onChange={(e) => setBirthDate(e.target.value)} /> 
      
   return (
-    <div className="centered-container">
+    
     <div className="login-container">
-      <h2>Cadastro</h2>
+      <Logo/>
+      <h2>Crie sua conta:</h2>
       <div className="input-container">
         <input type="text" placeholder="Nome" value={firstname} onChange={(e) => setFirstName(e.target.value)} />
       </div>
@@ -70,17 +71,17 @@ try {
         <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
 
-         <div className="input-container">
-          É professor?
-           <input type="checkbox" checked={isProfessor} onChange={(e) => setisProfessor(e.target.checked)}/>
-        
-        </div>
+         <div className="input-container check">
+            Sou professor: &nbsp;
+            <input type="checkbox" checked={isProfessor} onChange={(e) => setisProfessor(e.target.checked)}/>
+         </div>
       <button className="login-button" onClick={handleRegistration}>Registrar</button>
-      <div className="login-link">
-        <p className='registration-link'>Já possui uma conta? <a href="/login">Faça Login</a></p>
-      </div>
+      <p className='registration-link'>
+          Já possui uma conta? Clique <a href="/login">aqui</a> para entrar
+      </p>
     </div>
-    </div>
+
+    
   );
 }
 

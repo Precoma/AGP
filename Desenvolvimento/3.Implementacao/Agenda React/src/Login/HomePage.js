@@ -3,6 +3,9 @@ import {FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './design/HomePage.css'; 
 import TabelaAtividade from '../Atividade/TabelaAtividade';
+import '../estilos/home.css';
+import '../estilos/aluno.css';
+import Navbar from './navbar.jsx';  
 
 function HomePage({ user, onLogout }) {
     const navigate = useNavigate();
@@ -173,8 +176,8 @@ function HomePage({ user, onLogout }) {
 
     return (
         <div className="home-page">
-            <nav className="navbar">
-                <span>Bem-vindo Aluno {user.firstname}!</span>
+            {/* <nav className="navbar">
+                <span>Bem-vindo {user.firstname}!</span>
                 <div className="nav-icons">
                     <FaUser className="user-icon" onClick={toggleUserMenu} />
                     {isUserMenuOpen && (
@@ -185,7 +188,13 @@ function HomePage({ user, onLogout }) {
                         </div>
                     )}
                 </div>
-            </nav>
+            </nav> */}
+            <Navbar
+                user= {user.firstname}
+                toggle= {toggleUserMenu}
+                iumo= {isUserMenuOpen}
+                handle= {handleLogout}
+            />
             <header>
                 <h1>Atividades</h1>
             </header>

@@ -1,15 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
 import CadastrarMateria from "./CadastrarMateria";
 import TabelaMateria from "./TabelaMateria";
 import TabelaAtividade from "../Atividade/TabelaAtividade";
 import CadastroAtividade from "../Atividade/CadastrarAtividade";
 import AtividadeIndex from "../Atividade/AtividadeIndex";
 import AvisosIndex from "../Avisos/AvisosIndex";
+import '../estilos/atividade_materia.css'
 
-import '../estilos/atividade.css'
 
 
 function MateriaIndex(user){
@@ -205,10 +204,10 @@ function MateriaIndex(user){
 
   return (
     <div className="App">
-        <h1>Cadastrar Materia</h1>
+        <h1>Cadastrar Matéria</h1>
 
         {/* Seção de cadastro de matéria */}
-        <div className="cadastro-atividade">
+        <div className="cadastro-materia">
             <CadastrarMateria 
                 obj={objMateria} 
                 eventoTeclado={aoDigitar} 

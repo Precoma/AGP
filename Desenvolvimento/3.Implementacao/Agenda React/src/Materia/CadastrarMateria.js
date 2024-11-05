@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import '../estilos/atividade_materia.css'
 
 function CadastrarMateria({obj, eventoTeclado, cadastrar, alterar, botao, limparForm}){
     return(
-
-
         <form>
         <input type="text" value={obj.nome} onChange={eventoTeclado} name="nome" placeholder="Matéria" className="form-control" />
         <input type="text" value={obj.sala} onChange={eventoTeclado} name="sala" placeholder="Sala" className="form-control"/>

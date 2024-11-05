@@ -1,9 +1,9 @@
 import {useState } from 'react';
-
 import {FaUser } from 'react-icons/fa';
 import './design/HomePage.css'; 
 import { useNavigate } from 'react-router-dom';
 import MateriaIndex from '../Materia/MateriaIndex';
+import Navbar from './navbar.jsx';  
 
 function HomeProfessor({ user, onLogout }) {
   const navigate = useNavigate();
@@ -20,20 +20,12 @@ function HomeProfessor({ user, onLogout }) {
 
   return (
     <div className="home-page">
-      <nav className="navbar">
-      <span>Bem vindo Professor {user?.firstname}!</span>
-      <div className="nav-icons">
-          <FaUser className="user-icon" onClick={toggleUserMenu} />
-          {isUserMenuOpen && (
-            <div className="custom-menu">
-              <ul>
-                <li onClick={handleLogout}>Logout</li>
-              </ul>
-            </div>
-          )}
-          
-        </div>
-      </nav>
+      <Navbar
+        user= {user.firstname}
+        toggle= {toggleUserMenu}
+        iumo= {isUserMenuOpen}
+        handle= {handleLogout}
+      />
 
       <div className='container' > <MateriaIndex user={user} /> 
       </div>

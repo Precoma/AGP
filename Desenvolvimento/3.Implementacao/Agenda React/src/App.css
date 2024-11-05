@@ -17,7 +17,6 @@ body {
   height: 50vh;
 }
 
-
 .centered-container {
   display: flex;
   justify-content: center;
@@ -73,7 +72,7 @@ body {
   padding-bottom: 0.75rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  background-color: #4F46E5;
+  background-color: #1d3050;
   color: #ffffff;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -99,7 +98,6 @@ body {
 .registration-link a:hover {
   text-decoration: underline;
 }
-
 
 .App-logo {
   height: 40vmin;
@@ -134,11 +132,4 @@ body {
   to {
     transform: rotate(360deg);
   }
-}
-
-/* adicionado */
-.App{
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
 }
