@@ -33,6 +33,10 @@ public class AtividadeService {
     @Autowired
     private RespostaModelo rm;
 
+    public Iterable<Atividade> listar(){
+        return ar.findAll();
+    }
+
 // Listar atividades por matéria com paginação
 public Page<Atividade> listarPorMateria(Long materiaId, Pageable pageable) {
     return ar.findByMateriaId(materiaId, pageable);

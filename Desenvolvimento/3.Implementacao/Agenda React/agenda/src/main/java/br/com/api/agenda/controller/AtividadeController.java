@@ -36,6 +36,13 @@ public Page<Atividade> listarAtividadesPorMateria(@PathVariable Long materiaId,
     return as.listarPorMateria(materiaId, PageRequest.of(page, size));
 }
 
+    @GetMapping("/listar-atividade")
+    public Iterable<Atividade> listarAtividade(){
+        Iterable<Atividade> todasAtividades = as.listar();
+        return todasAtividades;
+    }
+
+
     // Editar
     @PutMapping("/editar-atividade")
     public ResponseEntity<?> editarAtividade(@RequestBody Atividade am){
