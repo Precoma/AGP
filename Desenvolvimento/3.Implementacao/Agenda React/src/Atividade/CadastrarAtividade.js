@@ -1,5 +1,3 @@
-import '../estilos/atividade_materia.css';
-
 function CadastroAtividade({obj, eventoTeclado, cadastrar, alterar, botao}){
     return(
        

@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import TabelaAtividadeProf from './TabelaAtividadeProf'
 import CadastroAtividade from './CadastrarAtividade';
-import '../estilos/atividade_materia.css'
 
 function AtividadeIndex(materia) {
   const atividade = {

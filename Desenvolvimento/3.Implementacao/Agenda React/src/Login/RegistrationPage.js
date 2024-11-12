@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../App.css';
-import '../estilos/login_register.css'; 
 import Logo from './logo.jsx';  
 
 function RegistrationPage() {

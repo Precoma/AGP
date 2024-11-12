@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaUser, FaArrowLeft } from 'react-icons/fa'; // FaArrowLeft para a seta
 import { useNavigate } from 'react-router-dom';
-import '../Login/design/HomePage.css'; 
 
 function TabelaAvisosAluno({ user, onLogout }) {
     const [avisos, setAvisos] = useState([]);

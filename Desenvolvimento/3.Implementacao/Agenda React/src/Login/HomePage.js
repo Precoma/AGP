@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
-import {FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import './design/HomePage.css'; 
 import TabelaAtividade from '../Atividade/TabelaAtividade';
-import '../estilos/home.css';
-import '../estilos/aluno.css';
 import Navbar from './navbar.jsx';  
 
 function HomePage({ user, onLogout }) {
@@ -176,19 +172,6 @@ function HomePage({ user, onLogout }) {
 
     return (
         <div className="home-page">
-            {/* <nav className="navbar">
-                <span>Bem-vindo {user.firstname}!</span>
-                <div className="nav-icons">
-                    <FaUser className="user-icon" onClick={toggleUserMenu} />
-                    {isUserMenuOpen && (
-                        <div className="custom-menu">
-                            <ul>
-                                <li onClick={handleLogout}>Logout</li>
-                            </ul>
-                        </div>
-                    )}
-                </div>
-            </nav> */}
             <Navbar
                 user= {user.firstname}
                 toggle= {toggleUserMenu}
@@ -223,6 +206,7 @@ function HomePage({ user, onLogout }) {
                 </label>
                 <label>
                     <input
+                    className='input-container'
                         type="radio"
                         value="todas"
                         checked={filter === 'todas'}

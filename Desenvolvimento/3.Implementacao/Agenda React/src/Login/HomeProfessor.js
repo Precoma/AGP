@@ -1,6 +1,4 @@
 import {useState } from 'react';
-import {FaUser } from 'react-icons/fa';
-import './design/HomePage.css'; 
 import { useNavigate } from 'react-router-dom';
 import MateriaIndex from '../Materia/MateriaIndex';
 import Navbar from './navbar.jsx';  
