@@ -171,62 +171,62 @@ function HomePage({ user, onLogout }) {
             navigate('/avisos');
         };
 
-    return (
-        <div className="home-page">
-            <Navbar
-                user= {user.firstname}
-                toggle= {toggleUserMenu}
-                iumo= {isUserMenuOpen}
-                handle= {handleLogout}
-            />
-            <header>
-                <h1>Atividades</h1>
-            </header>
-
-            <button onClick={goToAvisos}>Ir para Avisos</button>
-
-            {/* Radio buttons para selecionar o filtro */}
-            <div className="filtro-atividades">
-                <label>
-                    <input
-                        type="radio"
-                        value="pendentes"
-                        checked={filter === 'pendentes'}
-                        onChange={() => setFilter('pendentes')}
+        return (
+            <div className='App'>
+                <div className="home-page">
+                    <Navbar
+                        user={user.firstname}
+                        toggle={toggleUserMenu}
+                        iumo={isUserMenuOpen}
+                        handle={handleLogout}
                     />
-                    Pendentes
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value="feitas"
-                        checked={filter === 'feitas'}
-                        onChange={() => setFilter('feitas')}
+    
+                    <h1>Atividades</h1>
+    
+                    <button onClick={goToAvisos}>Avisos</button>
+    
+                    {/* Radio buttons para selecionar o filtro */}
+                    <div className="filtro-atividades">
+                        <label>
+                            <input
+                                type="radio"
+                                value="pendentes"
+                                checked={filter === 'pendentes'}
+                                onChange={() => setFilter('pendentes')}
+                            />
+                            Pendentes
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                value="feitas"
+                                checked={filter === 'feitas'}
+                                onChange={() => setFilter('feitas')}
+                            />
+                            Feitas
+                        </label>
+                        <label>
+                            <input
+                                className='input-container'
+                                type="radio"
+                                value="todas"
+                                checked={filter === 'todas'}
+                                onChange={() => setFilter('todas')}
+                            />
+                            Todas
+                        </label>
+                    </div>
+    {/* Renderizar tabela de atividades filtrada */}
+                    <TabelaAtividade
+                        vetor={filtrarAtividades()}
+                        remover={removerAtividade}
+                        selecionar={selecionarAtividade}
+                        atualizarAtividade={atualizarAtividade}
+                        desmarcarAtividade={desmarcarAtividade}
                     />
-                    Feitas
-                </label>
-                <label>
-                    <input
-                    className='input-container'
-                        type="radio"
-                        value="todas"
-                        checked={filter === 'todas'}
-                        onChange={() => setFilter('todas')}
-                    />
-                    Todas
-                </label>
+                </div>
             </div>
-
-            {/* Renderizar tabela de atividades filtrada */}
-            <TabelaAtividade
-                vetor={filtrarAtividades()} 
-                remover={removerAtividade}
-                selecionar={selecionarAtividade}
-                atualizarAtividade={atualizarAtividade}
-                desmarcarAtividade={desmarcarAtividade}
-            />
-        </div>
-    );
+        );
 }
 
 export default HomePage;

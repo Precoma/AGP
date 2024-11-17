@@ -16,19 +16,17 @@ function HomeProfessor({ user, onLogout }) {
     navigate('/login'); // Redireciona para a tela de login
 };
 
-  return (
-    <div className="home-page">
-      <Navbar
-        user= {user.firstname}
-        toggle= {toggleUserMenu}
-        iumo= {isUserMenuOpen}
-        handle= {handleLogout}
-      />
-
-      <div className='container' > <MateriaIndex user={user} /> 
-      </div>
-    </div>
-  );
+return (
+  <div className="home-page">
+    <Navbar
+      user= {user.firstname}
+      toggle= {toggleUserMenu}
+      iumo= {isUserMenuOpen}
+      handle= {handleLogout}
+    />
+    <MateriaIndex user={user}/> 
+  </div>
+);
 }
 
 export default HomeProfessor;

@@ -1,7 +1,6 @@
 function TabelaAtividade({ vetor, remover, selecionar}) {
         
     return(
-
         <table class="table table-hover table-responsive w-auto table-striped">
         <thead>
             <tr>
@@ -27,7 +26,6 @@ function TabelaAtividade({ vetor, remover, selecionar}) {
             }
         </tbody>
     </table>
-
     )
 }
 

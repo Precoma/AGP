@@ -1,15 +1,12 @@
 function TabelaMateria({ vetor, remover, selecionarAtividade, selecionarAvisos }) {
     return (
-        <table class="table table-hover table-responsive w-auto table-striped">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Matéria:</th>
                     <th scope="col">Sala:</th>
                     <th scope="col">Dia e Horário:</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col" colSpan={4}>Funções:</th>
                 </tr>
             </thead>
             <tbody>

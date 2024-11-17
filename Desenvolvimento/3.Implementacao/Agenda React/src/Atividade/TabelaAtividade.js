@@ -11,16 +11,15 @@ function TabelaAtividade({ vetor, remover, selecionar, atualizarAtividade, desma
     };
 
     return(
-
         <table class="table table-hover table-responsive w-auto table-striped">
         <thead>
             <tr>
-                <th scope="col">Atividade:</th>
-                <th scope="col">Data entrega:</th>
+                <th scope="col">Título:</th>
+                <th scope="col">Data de entrega:</th>
                 <th scope="col">Descrição:</th>
                 <th scope="col">Matéria:</th>
                 <th scope="col">Feita:</th>
-                <th scope="col"></th>
+                <th scope="col">Funções:</th>
             </tr>
         </thead>
         <tbody>
@@ -34,18 +33,16 @@ function TabelaAtividade({ vetor, remover, selecionar, atualizarAtividade, desma
                         <td>
                                 <input
                                     type="checkbox"
-                                    checked={obj.feita} // Supondo que `feita` seja um booleano
+                                    checked={obj.feita} // Supondo que feita seja um booleano
                                     onChange={(event) => handleCheckboxChange(obj.id, event)}
                                 />
                             </td>
                        <td> <button className="btn btn-danger" onClick={() => remover(obj.id)}>Remover</button>  </td>
                     </tr>
                 ))
-
             }
         </tbody>
     </table>
-
     )
 }
 

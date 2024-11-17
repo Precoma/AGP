@@ -1,1 +1,0 @@
-export const serverAddress = "http://3.84.225.87:8081";
