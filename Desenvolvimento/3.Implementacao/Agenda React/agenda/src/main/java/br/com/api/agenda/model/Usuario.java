@@ -12,17 +12,17 @@ import lombok.*;
 @EqualsAndHashCode
 @Entity
 
-public class Customer {
+public class Usuario {
 
     @Id
     @SequenceGenerator(
-            name = "customer_sequence",
-            sequenceName = "customer_sequence",
+            name = "usuario_sequence",
+            sequenceName = "usuario_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "customer_sequence"
+            generator = "usuario_sequence"
     )
     @Column(
             name = "id",

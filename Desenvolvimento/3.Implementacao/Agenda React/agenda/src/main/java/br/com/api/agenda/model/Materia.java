@@ -36,9 +36,9 @@ public class Materia {
 
     @OneToMany(mappedBy = "materia", cascade = CascadeType.REMOVE)
     @JsonIgnore
-    private List<Avisos> avisos;
+    private List<Aviso> avisos;
 
     @ManyToOne
     @JoinColumn(name="professor_id")
-    private Customer professor;
+    private Usuario professor;
 }

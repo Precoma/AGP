@@ -13,21 +13,21 @@ import br.com.api.agenda.repository.AlunoAvisoRepository;
 public class AlunoAvisoService {
 
     @Autowired
-    AlunoAvisoRepository atr;
+    AlunoAvisoRepository alunoAvisoRepository;
 
         // Buscar atividades de um aluno
         public List<AlunoAviso> buscarAvisosPorAluno(Long alunoId) {
             // Busca todas as atividades associadas ao aluno
-            return atr.findByAlunoId(alunoId);
+            return alunoAvisoRepository.findByAlunoId(alunoId);
         }
 
     // Método para deletar a relação entre aluno e aviso
     public void deletarAvisoAluno(Long alunoId, Long avisoId) {
         // Verifique se a relação existe antes de tentar deletar
-        Optional<AlunoAviso> alunoAvisoOpt = atr.findByAlunoIdAndAvisoId(alunoId, avisoId);
+        Optional<AlunoAviso> alunoAvisoOpt = alunoAvisoRepository.findByAlunoIdAndAvisoId(alunoId, avisoId);
         
         if (alunoAvisoOpt.isPresent()) {
-            atr.delete(alunoAvisoOpt.get());
+            alunoAvisoRepository.delete(alunoAvisoOpt.get());
         } else {
             throw new RuntimeException("Relação entre aluno e aviso não encontrada.");
         }

@@ -14,46 +14,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.agenda.model.AlunoAviso;
-import br.com.api.agenda.model.Avisos;
+import br.com.api.agenda.model.Aviso;
 import br.com.api.agenda.model.RespostaModelo;
 import br.com.api.agenda.service.AlunoAvisoService;
-import br.com.api.agenda.service.AvisosService;
+import br.com.api.agenda.service.AvisoService;
 
 @RestController
 @CrossOrigin(origins = "*") 
-public class AvisosControler {
+public class AvisoController {
 
     @Autowired
-    private AvisosService as;
+    private AvisoService avisosService;
 
     @Autowired
     private AlunoAvisoService alunoavisoservice;
 
     // Cadastrar
     @PostMapping("/cadastrar-aviso")
-    public ResponseEntity<?> cadastrarAvio(@RequestBody Avisos AvisoModel){
+    public ResponseEntity<?> cadastrarAvisos(@RequestBody Aviso AvisoModel){
         
-        return as.CadastrarAlterarAviso(AvisoModel, "cadastrar"); 
+        return avisosService.CadastrarAlterarAviso(AvisoModel, "cadastrar"); 
     }
 
     //Listar
     @GetMapping("/listar-avisos")
-        public Iterable<Avisos> listarAvisos(){
-        Iterable<Avisos> avisos = as.listar();
+        public Iterable<Aviso> listarAvisos(){
+        Iterable<Aviso> avisos = avisosService.listar();
 
         return avisos;
     }
 
     //Editar 
     @PutMapping("/editar-avisos")
-    public ResponseEntity<?> editarAvisos(@RequestBody Avisos AvisoModel){
-        return as.CadastrarAlterarAviso(AvisoModel, "alterar");
+    public ResponseEntity<?> editarAvisos(@RequestBody Aviso AvisoModel){
+        return avisosService.CadastrarAlterarAviso(AvisoModel, "alterar");
     }
 
     // Remover
     @DeleteMapping("/remover-avisos/{id}")
-    public ResponseEntity<RespostaModelo> removerAvisos(@PathVariable long id){
-        return as.remover(id);
+    public ResponseEntity<RespostaModelo> removerAvisos(@PathVariable Long id){
+        return avisosService.remover(id);
     } 
 
     // Buscar avisos por aluno

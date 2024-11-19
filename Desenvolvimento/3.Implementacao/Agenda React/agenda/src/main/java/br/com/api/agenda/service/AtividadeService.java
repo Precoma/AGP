@@ -12,47 +12,47 @@ import org.springframework.data.domain.Pageable;
 import br.com.api.agenda.model.AlunoAtividade;
 import br.com.api.agenda.model.Atividade;
 import br.com.api.agenda.model.RespostaModelo;
-import br.com.api.agenda.model.Customer;
+import br.com.api.agenda.model.Usuario;
 import br.com.api.agenda.repository.AlunoAtividadeRepository;
 import br.com.api.agenda.repository.AtividadeRepository;
-import br.com.api.agenda.repository.CustomerRepository;
+import br.com.api.agenda.repository.UsuarioRepository;
 
 
 @Service
 public class AtividadeService {
 
     @Autowired
-    private AtividadeRepository ar;
+    private AtividadeRepository atividadeRepository;
 
     @Autowired
-    private CustomerRepository alunoRepository;
+    private UsuarioRepository alunoRepository;
 
     @Autowired
     private AlunoAtividadeRepository alunoAtividadeRepository;
 
     @Autowired
-    private RespostaModelo rm;
+    private RespostaModelo respostaModelo;
 
     public Iterable<Atividade> listar(){
-        return ar.findAll();
+        return atividadeRepository.findAll();
     }
 
 // Listar atividades por matéria com paginação
 public Page<Atividade> listarPorMateria(Long materiaId, Pageable pageable) {
-    return ar.findByMateriaId(materiaId, pageable);
+    return atividadeRepository.findByMateriaId(materiaId, pageable);
 }
 
     // Cadastrar / Alterar
     public ResponseEntity<?> CadastrarAlterarAtividade(Atividade am, String acao){
         if(acao.equals("cadastrar")){
 
-            Atividade novaAtividade = ar.save(am);
+            Atividade novaAtividade = atividadeRepository.save(am);
 
             // Busca todos os alunos
-           List<Customer> alunos = alunoRepository.findAll();
+           List<Usuario> alunos = alunoRepository.findAll();
 
             // Para cada aluno, cria uma entrada na tabela AlunoAtividade
-            for (Customer aluno : alunos) {
+            for (Usuario aluno : alunos) {
                 AlunoAtividade alunoAtividade = new AlunoAtividade();
                 alunoAtividade.setAluno(aluno);
                 alunoAtividade.setAtividade(novaAtividade);
@@ -63,17 +63,17 @@ public Page<Atividade> listarPorMateria(Long materiaId, Pageable pageable) {
             return new ResponseEntity<Atividade>(novaAtividade, HttpStatus.CREATED);
 
         } else {
-            return new ResponseEntity<Atividade>(ar.save(am), HttpStatus.OK);
+            return new ResponseEntity<Atividade>(atividadeRepository.save(am), HttpStatus.OK);
         }
     }
 
     // Remover
     public ResponseEntity<RespostaModelo> remover(long id){
 
-        ar.deleteById(id);
+        atividadeRepository.deleteById(id);
 
-        rm.setMensagem("Atividade removida com sucesso");
-        return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+        respostaModelo.setMensagem("Atividade removida com sucesso");
+        return new ResponseEntity<RespostaModelo>(respostaModelo, HttpStatus.OK);
     }
     
 }

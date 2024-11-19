@@ -22,7 +22,7 @@ public class AlunoAtividade {
 
     @ManyToOne
     @JoinColumn(name = "aluno_id", nullable = false)
-    private Customer aluno;
+    private Usuario aluno;
 
     @ManyToOne
     @JoinColumn(name = "atividade_id", nullable = false)

@@ -13,36 +13,36 @@ import br.com.api.agenda.repository.MateriaRepository;
 public class MateriaService {
 
     @Autowired
-    private MateriaRepository mr;
+    private MateriaRepository materiaRepository;
 
     @Autowired
-    private RespostaModelo rm;
+    private RespostaModelo respostaModelo;
 
     //Listar
     public Iterable<Materia> listar(Long userId){
-        return mr.findByProfessorId(userId);
+        return materiaRepository.findByProfessorId(userId);
     }
 
     // Cadastrar / Alterar
     public ResponseEntity<?> CadastrarAlterarMateria(Materia materiaModel, String acao){
 
         if(acao.equals("cadastrar")){
-            if (mr.existsById(materiaModel.getId())) {
+            if (materiaRepository.existsById(materiaModel.getId())) {
                 return new ResponseEntity<>("Materia já existe", HttpStatus.CONFLICT);
             }
             
-            return new ResponseEntity<Materia>(mr.save(materiaModel), HttpStatus.CREATED);
+            return new ResponseEntity<Materia>(materiaRepository.save(materiaModel), HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<Materia>(mr.save(materiaModel), HttpStatus.OK);
+            return new ResponseEntity<Materia>(materiaRepository.save(materiaModel), HttpStatus.OK);
         }
     }
 
     // Remover
     public ResponseEntity<RespostaModelo> remover(long id){
 
-        mr.deleteById(id);
+        materiaRepository.deleteById(id);
     
-        rm.setMensagem("Materia removida com sucesso");
-        return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+        respostaModelo.setMensagem("Materia removida com sucesso");
+        return new ResponseEntity<RespostaModelo>(respostaModelo, HttpStatus.OK);
     }
 }

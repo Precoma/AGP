@@ -22,12 +22,12 @@ import br.com.api.agenda.service.MateriaService;
 public class MateriaController {
 
     @Autowired
-    private MateriaService ms;
+    private MateriaService materiaService;
 
     //Listar
     @GetMapping("/listar-materias")
         public Iterable<Materia> listarMateria(@RequestParam Long userId){
-        Iterable<Materia> materias = ms.listar(userId);
+        Iterable<Materia> materias = materiaService.listar(userId);
 
         return materias;
     }
@@ -35,20 +35,20 @@ public class MateriaController {
     //Editar 
     @PutMapping("/editar-materia")
     public ResponseEntity<?> editarMateria(@RequestBody Materia materiaModel){
-        return ms.CadastrarAlterarMateria(materiaModel, "alterar");
+        return materiaService.CadastrarAlterarMateria(materiaModel, "alterar");
     }
 
     // Cadastrar
     @PostMapping("/cadastrar-materia")
     public ResponseEntity<?> cadastrarMateria(@RequestBody Materia materiaModel){
         
-        return ms.CadastrarAlterarMateria(materiaModel, "cadastrar"); 
+        return materiaService.CadastrarAlterarMateria(materiaModel, "cadastrar"); 
     }
 
     // Remover
     @DeleteMapping("/remover-materia/{id}")
     public ResponseEntity<RespostaModelo> removerMateria(@PathVariable long id){
-        return ms.remover(id);
+        return materiaService.remover(id);
     } 
 }
 

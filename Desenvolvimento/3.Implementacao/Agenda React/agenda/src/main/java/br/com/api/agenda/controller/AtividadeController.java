@@ -24,7 +24,7 @@ import br.com.api.agenda.service.AtividadeService;
 public class AtividadeController {
 
     @Autowired
-    private AtividadeService as;
+    private AtividadeService atividadeService;
 
 
 
@@ -33,32 +33,32 @@ public class AtividadeController {
 public Page<Atividade> listarAtividadesPorMateria(@PathVariable Long materiaId, 
                                                   @RequestParam(defaultValue = "0") int page, 
                                                   @RequestParam(defaultValue = "3") int size) {
-    return as.listarPorMateria(materiaId, PageRequest.of(page, size));
+    return atividadeService.listarPorMateria(materiaId, PageRequest.of(page, size));
 }
 
     @GetMapping("/listar-atividade")
     public Iterable<Atividade> listarAtividade(){
-        Iterable<Atividade> todasAtividades = as.listar();
+        Iterable<Atividade> todasAtividades = atividadeService.listar();
         return todasAtividades;
     }
 
 
     // Editar
     @PutMapping("/editar-atividade")
-    public ResponseEntity<?> editarAtividade(@RequestBody Atividade am){
-        return as.CadastrarAlterarAtividade(am, "alterar");
+    public ResponseEntity<?> editarAtividade(@RequestBody Atividade atividade){
+        return atividadeService.CadastrarAlterarAtividade(atividade, "alterar");
     }
 
     // Cadastrar
     @PostMapping("/cadastrar-atividade")
-    public ResponseEntity<?> cadastrarAtividade(@RequestBody Atividade am){
-        return as.CadastrarAlterarAtividade(am, "cadastrar"); 
+    public ResponseEntity<?> cadastrarAtividade(@RequestBody Atividade atividade){
+        return atividadeService.CadastrarAlterarAtividade(atividade, "cadastrar"); 
     }
 
     // Remover
     @DeleteMapping("/remover-atividade/{id}")
     public ResponseEntity<RespostaModelo> removerAtividade(@PathVariable long id){
-        return as.remover(id);
+        return atividadeService.remover(id);
     }
 
     @GetMapping("/")
