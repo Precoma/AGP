@@ -40,13 +40,31 @@ body {
   height: auto;
 }
 
-input[type='checkbox']:checked {
-  accent-color: var(--cor3) !important;
+input[type='checkbox'], input[type='radio'] {
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-color: var(--cor3);
+  border: 2px dotted var(--cor1);
+  border-radius: 3px;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+input[type='radio'] {
+  border: 2px solid var(--cor1);
+  border-radius: 50%;
+  margin-bottom: 3px ;
+}
+input[type='checkbox']:checked, input[type='radio']:checked {
+  background-image: url('_img/check.png');
+  background-size: contain;
+  background-color: var(--cor4);
+  border: 2px solid var(--cor4);
 }
 
 /* LOGIN E REGISTER*/
 .login-container {
-  background-color: #fff;
+  background-color: var(--cor3);
   box-shadow: 0 0px 20px rgba(0, 0, 0, 0.603);
   padding: 2rem;
   text-align: center;
@@ -107,7 +125,7 @@ input[type='checkbox']:checked {
   display: block;
   padding: 0.75rem 1.25rem;
   background-color: var(--cor1);
-  color: #fff;
+  color: var(--cor3);
   font-weight: bolder;
   width: 50%;
   border-radius: 20px;
@@ -119,10 +137,13 @@ input[type='checkbox']:checked {
 .check {
   font-size: 22px;
   margin: 10px;
+  height: auto;
 }
 
-.check>input {
+.input-check {
   width: auto !important;
+  padding: 10px !important;
+  border: 2px solid transparent !important;
 }
 
 .check>input:focus {
@@ -142,13 +163,13 @@ input[type='checkbox']:checked {
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 10px 60px;
+  padding: 0 95px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   background-color: var(--cor1);
-  color: #fff;
+  color: var(--cor3);
   box-shadow: 1px 1px 10px black;
   font-weight: bold;
   font-size: 1.5em;
@@ -162,15 +183,15 @@ input[type='checkbox']:checked {
 .custom-menu {
   position: absolute;
   top: 100%;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
+  right: 10px;
+  background-color: var(--cor3);
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1;
   padding: 8px;
   min-width: 150px;
   font-size: 0.8em;
+  width: 200px;
 }
 
 .custom-menu ul {
@@ -180,17 +201,17 @@ input[type='checkbox']:checked {
 }
 
 .custom-menu li {
-  padding: 8px 16px;
+  padding: 8px;
   cursor: pointer;
   color: black;
-  white-space: nowrap;
+  border-radius: 10px;
 }
 
 .custom-menu li:hover {
-  background-color: #f0f0f0;
+  background-color: var(--cor2);
 }
 
-/* ATIVIDADE MATERIA */
+/* HOME */
 .home-page {
   text-align: center;
   padding: 50px;
@@ -204,7 +225,7 @@ h1 {
   border-bottom: 1px solid rgba(255, 255, 255, 0.281);
   font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   font-weight: bolder !important;
-  color: #fff;
+  color: var(--cor3);
 }
 
 table {
@@ -222,18 +243,22 @@ table th {
 
 table th {
   background-color: var(--cor4) !important;
-  color: #fff !important;
+  color: var(--cor3) !important;
 }
 
 table tr:nth-child(odd) td{
   background-color: var(--cor3) !important;
 }
 
+.text-center {
+  height: 57px;
+}
+
 .btn {
   border: none;
   background-color: transparent;
   border: 2px solid var(--cor4);
-  color: #fff;
+  color: var(--cor3);
 }
 
 .btn-danger {
@@ -264,11 +289,41 @@ table tr:nth-child(odd) td{
   border: 2px solid var(--cor1);
 }
 
+/* PROFESSOR */
 .cadastro-materia form {
   display: flex;
   gap: 10px;
   margin: 30px;
   padding: 20px;
   border-radius: 8px;
-  background-color: #f0f0f0;
+  background-color: var(--cor3);
+}
+
+.botoes-editarM {
+  display: flex;
+  gap: 10px;
+}
+
+/* ALUNO */
+.filtro-atividades {
+  background-color: var(--cor4);
+  color: var(--cor3);
+  padding: 20px;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  border-radius: 20px 20px 0 0;
+  font-weight: bold;
+}
+
+.filtro-atividades label {
+  cursor: pointer;
+}
+
+.nav-icons {
+  cursor: pointer;
 }

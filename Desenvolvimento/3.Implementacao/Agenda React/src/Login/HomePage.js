@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TabelaAtividade from '../Atividade/TabelaAtividade';
-import Navbar from './navbar.jsx';  
+import Navbar from './navbar.jsx';
 import { serverAddress } from "../configServer";
 
 function HomePage({ user, onLogout }) {
     const navigate = useNavigate();
-
-    const [filter, setFilter] = useState('pendentes'); // 'pendentes' ou 'feitas'
-
+    const [filter, setFilter] = useState('todas');
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
     const [atividades, setAtividades] = useState([]);
     const [objAtividade, setObjAtividade] = useState({
@@ -21,30 +19,25 @@ function HomePage({ user, onLogout }) {
         feita: false
     });
     const [btnCadastrar, SetBtnCadastrar] = useState(true);
-
     const toggleUserMenu = () => {
         setUserMenuOpen(!isUserMenuOpen);
     };
 
-    // Fetch para buscar atividades
     useEffect(() => {
         const fetchAtividades = async () => {
             try {
                 const atividadesResponse = await fetch(serverAddress + "/listar-atividade");
                 const atividadesData = await atividadesResponse.json();
-
-                // Aqui você pode buscar o status das atividades do aluno
-                const alunoId = user.id; // Supondo que você tenha o id do aluno no objeto user
+                const alunoId = user.id;
                 const statusResponse = await fetch(serverAddress + `/alunos/${alunoId}/atividades`);
                 const statusData = await statusResponse.json();
 
                 console.log("statusData")
                 console.log(statusData)
 
-                // Mapear o status das atividades para as atividades
                 const atividadesComStatus = atividadesData.filter(atividade => {
                     const statusAtividade = statusData.find(status => status.atividade.id === atividade.id);
-                    return statusAtividade; // Filtrar apenas atividades vinculadas
+                    return statusAtividade;
                 }).map(atividade => {
                     const statusAtividade = statusData.find(status => status.atividade.id === atividade.id);
                     return {
@@ -63,7 +56,7 @@ function HomePage({ user, onLogout }) {
         };
 
         fetchAtividades();
-    }, [user.id]); // O useEffect será executado quando o id do usuário mudar
+    }, [user.id]);
 
     const removerAtividade = (id) => {
         fetch(serverAddress + `/alunos/${user.id}/atividades/${id}/delete`, {
@@ -73,19 +66,18 @@ function HomePage({ user, onLogout }) {
                 'Accept': 'application/json'
             }
         })
-        .then(response => {
-            if (response.ok) {
-                // Atualizar o estado para remover a atividade da lista
-                setAtividades(prevAtividades => prevAtividades.filter(atividade => atividade.id !== id));
-                alert('Atividade removida com sucesso!');
-            } else {
+            .then(response => {
+                if (response.ok) {
+                    setAtividades(prevAtividades => prevAtividades.filter(atividade => atividade.id !== id));
+                    alert('Atividade removida com sucesso!');
+                } else {
+                    alert('Erro ao remover atividade.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao remover atividade:', error);
                 alert('Erro ao remover atividade.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao remover atividade:', error);
-            alert('Erro ao remover atividade.');
-        });
+            });
     };
 
     const selecionarAtividade = (indice) => {
@@ -96,21 +88,20 @@ function HomePage({ user, onLogout }) {
 
     const handleLogout = () => {
         onLogout();
-        navigate('/login'); // Redireciona para a tela de login
+        navigate('/login');
     };
 
-        // Função para filtrar as atividades com base no estado 'feita'
-        const filtrarAtividades = () => {
-            return atividades.filter(atividade => {
-                if (filter === 'feitas') {
-                    return atividade.feita;
-                } else if (filter === 'pendentes') {
-                    return !atividade.feita;
-                } else {
-                    return true; // Caso geral, mostrar todas
-                }
-            });
-        };
+    const filtrarAtividades = () => {
+        return atividades.filter(atividade => {
+            if (filter === 'feitas') {
+                return atividade.feita;
+            } else if (filter === 'pendentes') {
+                return !atividade.feita;
+            } else {
+                return true;
+            }
+        });
+    };
 
     const atualizarAtividade = async (id, statusFeito) => {
         try {
@@ -124,7 +115,6 @@ function HomePage({ user, onLogout }) {
 
             if (response.ok) {
                 alert('Atividade atualizada com sucesso!');
-                // Atualizar o estado local para refletir a mudança
                 setAtividades(prevAtividades => prevAtividades.map(atividade => {
                     if (atividade.id === id) {
                         return { ...atividade, feita: statusFeito };
@@ -151,7 +141,6 @@ function HomePage({ user, onLogout }) {
 
             if (response.ok) {
                 alert('Atividade atualizada com sucesso!');
-                // Atualizar o estado local para refletir a mudança
                 setAtividades(prevAtividades => prevAtividades.map(atividade => {
                     if (atividade.id === id) {
                         return { ...atividade, feita: statusFeito };
@@ -166,67 +155,60 @@ function HomePage({ user, onLogout }) {
         }
     };
 
-        // Função para redirecionar para a página de avisos
-        const goToAvisos = () => {
-            navigate('/avisos');
-        };
+    const goToAvisos = () => {
+        navigate('/avisos');
+    };
 
-        return (
-            <div className='App'>
-                <div className="home-page">
-                    <Navbar
-                        user={user.firstname}
-                        toggle={toggleUserMenu}
-                        iumo={isUserMenuOpen}
-                        handle={handleLogout}
-                    />
-    
-                    <h1>Atividades</h1>
-    
-                    <button onClick={goToAvisos}>Avisos</button>
-    
-                    {/* Radio buttons para selecionar o filtro */}
-                    <div className="filtro-atividades">
-                        <label>
-                            <input
-                                type="radio"
-                                value="pendentes"
-                                checked={filter === 'pendentes'}
-                                onChange={() => setFilter('pendentes')}
-                            />
-                            Pendentes
-                        </label>
-                        <label>
-                            <input
-                                type="radio"
-                                value="feitas"
-                                checked={filter === 'feitas'}
-                                onChange={() => setFilter('feitas')}
-                            />
-                            Feitas
-                        </label>
-                        <label>
-                            <input
-                                className='input-container'
-                                type="radio"
-                                value="todas"
-                                checked={filter === 'todas'}
-                                onChange={() => setFilter('todas')}
-                            />
-                            Todas
-                        </label>
-                    </div>
-    {/* Renderizar tabela de atividades filtrada */}
-                    <TabelaAtividade
-                        vetor={filtrarAtividades()}
-                        remover={removerAtividade}
-                        selecionar={selecionarAtividade}
-                        atualizarAtividade={atualizarAtividade}
-                        desmarcarAtividade={desmarcarAtividade}
-                    />
+    return (
+        <div className='App'>
+            <div className="home-page">
+                <Navbar
+                    user={user.firstname}
+                    toggle={toggleUserMenu}
+                    iumo={isUserMenuOpen}
+                    handle={handleLogout}
+                    avisos= {goToAvisos}
+                />
+
+                <h1>Atividades</h1>
+
+                <div className="filtro-atividades">
+                    <label> Todas &nbsp;
+                        <input
+                            type="radio"
+                            value="todas"
+                            checked={filter === 'todas'}
+                            onChange={() => setFilter('todas')}
+                        />
+                    </label>
+                    <label>Pendentes &nbsp;
+                        <input
+                            type="radio"
+                            value="pendentes"
+                            checked={filter === 'pendentes'}
+                            onChange={() => setFilter('pendentes')}
+                        />
+                    </label>
+                    <label> Feitas &nbsp;
+                        <input
+                            type="radio"
+                            value="feitas"
+                            checked={filter === 'feitas'}
+                            onChange={() => setFilter('feitas')}
+                        />
+                    </label>
                 </div>
+
+                <TabelaAtividade
+                    vetor={filtrarAtividades()}
+                    remover={removerAtividade}
+                    selecionar={selecionarAtividade}
+                    atualizarAtividade={atualizarAtividade}
+                    desmarcarAtividade={desmarcarAtividade}
+                />
             </div>
-        );
+        </div>
+    );
 }
 
 export default HomePage;

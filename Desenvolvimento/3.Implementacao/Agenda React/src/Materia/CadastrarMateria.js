@@ -11,7 +11,7 @@ function CadastrarMateria({ obj, eventoTeclado, cadastrar, alterar, botao, limpa
                     ?
                     <input type="button" value="Cadastrar" onClick={cadastrar} className="btn btn-primary" />
                     :
-                    <div>
+                    <div className="botoes-editarM">
                         <input type="button" value="Alterar" onClick={alterar} className="btn btn-warning" />
                         <input type="button" value="Cancelar" onClick={limparForm} className="btn btn-danger" />
                     </div>

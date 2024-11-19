@@ -14,7 +14,6 @@ function CadastrarAvisos({obj, eventoTeclado, cadastrar, alterar, botao}) {
         }
     </form>
     )
-
 }
 
 export default CadastrarAvisos;

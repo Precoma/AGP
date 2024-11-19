@@ -1,6 +1,6 @@
 function TabelaAvisos({ vetor, remover, selecionar}) {
     return(
-        <table class="table table-hover table-responsive w-auto table-striped">
+        <table className="table">
         <thead>
             <tr>
                 <th scope="col">Aviso:</th>
@@ -23,4 +23,5 @@ function TabelaAvisos({ vetor, remover, selecionar}) {
     </table>
     )
 }
+
 export default TabelaAvisos;
