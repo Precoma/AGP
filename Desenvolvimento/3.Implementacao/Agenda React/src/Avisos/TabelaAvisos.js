@@ -4,8 +4,7 @@ function TabelaAvisos({ vetor, remover, selecionar}) {
         <thead>
             <tr>
                 <th scope="col">Aviso:</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col" colSpan={2}>Funções:</th>
             </tr>
         </thead>
         <tbody>

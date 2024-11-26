@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import TabelaAtividade from '../Atividade/TabelaAtividade';
 import Navbar from './navbar.jsx';
 import { serverAddress } from "../configServer";
+import $ from 'jquery'; 
 
 function HomePage({ user, onLogout }) {
+    $(".sucesso").hide();
+
     const navigate = useNavigate();
     const [filter, setFilter] = useState('todas');
     const [isUserMenuOpen, setUserMenuOpen] = useState(false);
@@ -69,14 +72,14 @@ function HomePage({ user, onLogout }) {
             .then(response => {
                 if (response.ok) {
                     setAtividades(prevAtividades => prevAtividades.filter(atividade => atividade.id !== id));
-                    alert('Atividade removida com sucesso!');
-                } else {
-                    alert('Erro ao remover atividade.');
+                    $(".sucesso").html("Atividade removida com sucesso!");
+                    $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
                 }
             })
             .catch(error => {
                 console.error('Erro ao remover atividade:', error);
-                alert('Erro ao remover atividade.');
+                $(".sucesso").html("Erro ao remover atividade!");
+                $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
             });
     };
 
@@ -114,18 +117,19 @@ function HomePage({ user, onLogout }) {
             });
 
             if (response.ok) {
-                alert('Atividade atualizada com sucesso!');
+                $(".sucesso").html("Atividade atualizada com sucesso!");
+                $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
                 setAtividades(prevAtividades => prevAtividades.map(atividade => {
                     if (atividade.id === id) {
                         return { ...atividade, feita: statusFeito };
                     }
                     return atividade;
                 }));
-            } else {
-                alert('Erro ao atualizar atividade');
             }
         } catch (error) {
             console.error('Erro ao atualizar atividade:', error);
+            $(".sucesso").html("Erro ao atualizar atividade!");
+            $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
         }
     };
 
@@ -140,18 +144,19 @@ function HomePage({ user, onLogout }) {
             });
 
             if (response.ok) {
-                alert('Atividade atualizada com sucesso!');
+                $(".sucesso").html("Atividade atualizada com sucesso!");
+                $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
                 setAtividades(prevAtividades => prevAtividades.map(atividade => {
                     if (atividade.id === id) {
                         return { ...atividade, feita: statusFeito };
                     }
                     return atividade;
                 }));
-            } else {
-                alert('Erro ao atualizar atividade');
             }
         } catch (error) {
             console.error('Erro ao atualizar atividade:', error);
+            $(".sucesso").html("Erro ao atualizar atividade!");
+            $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
         }
     };
 
@@ -161,6 +166,7 @@ function HomePage({ user, onLogout }) {
 
     return (
         <div className='App'>
+            <div className="sucesso"></div>
             <div className="home-page">
                 <Navbar
                     user={user.firstname}

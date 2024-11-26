@@ -5,8 +5,11 @@ import TabelaMateria from "./TabelaMateria";
 import AtividadeIndex from "../Atividade/AtividadeIndex";
 import AvisosIndex from "../Avisos/AvisosIndex";
 import { serverAddress } from "../configServer";
+import $ from 'jquery'; 
 
 function MateriaIndex(user) {
+    $(".sucesso").hide();
+
     const materia = {
         id: 0,
         nome: '',
@@ -47,8 +50,9 @@ function MateriaIndex(user) {
             .then(materiasRetorno_convertido => {
                 setMaterias([...materias, materiasRetorno_convertido]);
                 console.log(user.user.id)
-                limparFormulario();
-                alert('Materia cadastrada com sucesso!');
+                limparFormulario(); 
+                $(".sucesso").html("Matéria cadastrada com sucesso!");
+                $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
             }
             )
     }
@@ -72,6 +76,8 @@ function MateriaIndex(user) {
 
                 setMaterias(vetorTemp);
                 limparFormulario();
+                $(".sucesso").html("Matéria editada com sucesso!");
+                $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
             })
     }
 
@@ -93,7 +99,8 @@ function MateriaIndex(user) {
 
                 setMaterias(vetorTemp);
                 limparFormulario();
-                alert(materiasRetorno_convertido.mensagem);
+                $(".sucesso").html("Matéria removida com sucesso!");
+                $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
             })
     }
 
@@ -141,9 +148,11 @@ function MateriaIndex(user) {
     }
 
     return (
-        <div className="App">
+        <div className="atividade">
+            <div className="sucesso"></div>
             <h1>Cadastrar Matéria</h1>
-            <div className="cadastro-materia">
+
+            <div className="cadastro">
                 <CadastrarMateria
                     obj={objMateria}
                     eventoTeclado={aoDigitar}
@@ -168,7 +177,7 @@ function MateriaIndex(user) {
                 {materiaSelecionadaAtividade ? (
                     <AtividadeIndex
                         materia={materiaId}
-                        selecionada={materiaSelecionadaAtividade}
+                        fecharAtividades={() => SetMateriaSelecionadaAtividade(false)}
                     />
                 ) : (
                     <div></div>
@@ -179,7 +188,7 @@ function MateriaIndex(user) {
                 {materiaSelecionadaAvisos ? (
                     <AvisosIndex
                         materia={materiaId}
-                        selecionada={materiaSelecionadaAvisos}
+                        fecharAvisos={() => SetMateriaSelecionadaAvisos(false)}
                     />
                 ) : (
                     <div></div>

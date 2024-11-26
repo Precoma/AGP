@@ -1,14 +1,13 @@
 function TabelaAtividade({ vetor, remover, selecionar}) {
         
     return(
-        <table class="table table-hover table-responsive w-auto table-striped">
+        <table class="table">
         <thead>
             <tr>
                 <th scope="col">Atividade:</th>
                 <th scope="col">Data entrega:</th>
                 <th scope="col">Descrição:</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col" colSpan={2}>Funções:</th>
             </tr>
         </thead>
         <tbody>

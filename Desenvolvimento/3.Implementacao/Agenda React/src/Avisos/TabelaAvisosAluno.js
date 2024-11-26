@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { FaUser, FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { serverAddress } from "../configServer";
+import $ from 'jquery'; 
 
-function TabelaAvisosAluno({ user, onLogout }) {
+function TabelaAvisosAluno({ user}) {
+    $(".sucesso").hide();
+
     const [avisos, setAvisos] = useState([]);
-    const [isUserMenuOpen, setUserMenuOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -40,8 +42,12 @@ function TabelaAvisosAluno({ user, onLogout }) {
             });
 
             setAvisos(prevAvisos => prevAvisos.filter(aviso => aviso.id !== avisoId));
+            $(".sucesso").html("Aviso removido com sucesso!");
+            $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
         } catch (error) {
             console.error('Erro ao deletar aviso:', error);
+            $(".sucesso").html("Erro ao deletar aviso!");
+            $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
         }
     };
 
@@ -51,6 +57,7 @@ function TabelaAvisosAluno({ user, onLogout }) {
 
     return (
         <div className="home-page">
+            <div className="sucesso"></div>
             <nav className="navbar">
                 <div className="nav-icons" onClick={voltarParaHome}>
                     <FaArrowLeft className="back-arrow" style={{ cursor: 'pointer', marginRight: '10px' }} />
