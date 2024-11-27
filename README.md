@@ -1,5 +1,63 @@
- HEAD
-# ES1
+# Projeto realizado para as matérias de ES1, LP2, SDI e PSW
 
 # <AGP> Agenda Pessoal Escolar
- 7be7e595fff51c9b67a259658a7c0f08405e5754
+
+A AGP é um sistema de agenda pessoal que busca ser uma ferramenta que
+permitirá aos alunos gerenciarem suas matérias e atividades de forma eficiente, com
+auxílio dos professores. Com esta agenda, os professores poderão cadastrar as matérias
+que lecionam, as atividades destas matérias e avisos para os alunos. Os alunos, por outro
+lado, poderão visualizar todas as poderão visualizar todas essas matérias, atividades e
+avisos cadastrados, além das atividades que estão pendentes para serem realizadas. A
+interface permitirá que os alunos e professores façam seu cadastro e login, além de
+visualizarem todas as matérias e atividades registradas, facilitando o acompanhamento do
+cronograma acadêmico. Além disso, as atividades que ainda precisam ser concluídas
+poderão ser vistas em outra aba de Pendentes, auxiliando os alunos a visualizarem o que
+precisam realizar. Assim que uma atividade for concluída, os alunos poderão marcá-la
+como feita. Após marcarem como feita, os alunos também poderão visualizar todas as
+tarefas feitas na aba de Concluídas. Essa ferramenta proporcionará uma gestão organizada
+e prática das obrigações acadêmicas, contribuindo para uma melhor organização e
+eficiência nos estudos dos alunos.
+
+## Objetivos do Sistema
+
+O objetivo da AGP é permitir que os alunos gerenciem suas atividades escolares
+com auxílio dos professores. As funcionalidades do sistema são o cadastro e login de
+alunos e professores, o CRUD das matérias, das atividades e dos avisos pelos professores,
+a visualização das matérias e das atividades que compõem essa matéria, visualização das
+atividades pendentes e concluídas pelos alunos e designação da atividade como concluída.
+
+## Instruções de instalação e configuração
+
+Para implantar a AGP em seu sistema, é necessário a realização dos seguintes downloads no sistema que executará o projeto:
+- Java e JDK
+- NodeJS
+- MySQL
+
+É necessário a instalação destes softwares para implementação tanto local quanto na núvem (AWS).
+
+## Componentes implementados na AWS
+
+- Amazon EC2: Permite a criação das instâncias da aplicação. Oferece flexibilidade
+para configurar o servidor conforme necessário e escalar manualmente.
+- AWS RDS: Para o gerenciamento dos bancos de dados do sistema. Utilizamos
+bancos relacionais, e o RDS pode nos auxiliar oferecendo backups automáticos,
+recuperação, escalabilidade e monitoramento.
+- Amazon CloudFront: Para distribuir conteúdos estáticos (React) com baixa
+latência em escala global, o CloudFront acelera o carregamento de páginas para
+usuários finais.
+- AWS IAM (Identity and Access Management): Controla as permissões e gerencia
+os acessos, fundamental para garantir segurança no acesso aos recursos AWS.
+- Amazon CloudWatch: Para monitorar métricas de desempenho e definir alertas
+para a infraestrutura e o aplicativo, sendo ideal para monitorar o ambiente da
+aplicação Java e React.
+- AWS VPC: Para executar os recursos do projeto em uma rede virtual privada e poder utilizar das subredes para separar o Backend do projeto do Frontend.
+
+## Diagrama de arquitetura do Projeto na AWS
+
+![Diagrama sem nome drawio](https://github.com/user-attachments/assets/16cc9660-d374-4693-abff-be5746380cc7)
+
+O diagrama demonstra que utilizamos duas instâncias do EC2 separadas, uma para o
+backend e outra para o frontend, que estão conectadas entre si. O Backend da aplicação é conectado com o banco
+de dados do projeto (Um banco MySQL em uma instância do RDS). Todas as instâncias do projeto são monitoradas pelo Cloudwatch e a aplicação
+passa pelo Cloudfront antes de passar pelo gateway da internet e chegar à internet. Por fim, um grupo de AutoScaling é utilizado para manter o equilibrio nas instâncias do projeto.
+
