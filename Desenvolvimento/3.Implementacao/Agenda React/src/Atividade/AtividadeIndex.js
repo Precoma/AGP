@@ -144,7 +144,7 @@ function AtividadeIndex({ materia, fecharAtividades }) {
   return (
     <div className="popup">
       <div className="botao-popup" onClick={fecharAtividades}>X</div>
-      <h1>Atividades da Matéria</h1>
+      <h1>Atividades</h1>
 
       <div className="cadastro">
         <CadastroAtividade

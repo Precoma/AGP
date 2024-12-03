@@ -28,7 +28,6 @@ function Navbar({ user, toggle, iumo, handle, avisos, isP }) {
                     {iumo && (
                         <div className="custom-menu">
                             <ul>
-                                <li>Cadastrar Matéria</li>
                                 <li onClick={avisos}>Avisos</li>
                                 <li onClick={handle}>Logout</li>
                             </ul>

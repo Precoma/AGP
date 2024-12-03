@@ -24,14 +24,14 @@ function RegistrationPage() {
       try {
         const response = await axios.post(serverAddress + '/add', userData);
         console.log(response.data);
-        console.log('User registered:', response.data);
+        console.log('Usario registrado:', response.data);
 
       } catch (error) {
         console.error('Erro ao fazer a requisição:', error.response ? error.response.data : error.message);
       }
 
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error('Erro ao regs:', error);
     }
     setRegistrationSuccess(true);
   };

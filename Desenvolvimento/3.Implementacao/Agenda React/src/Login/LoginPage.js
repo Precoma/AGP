@@ -3,8 +3,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Logo from './logo.jsx';
 import { serverAddress } from "../configServer";
+import $ from 'jquery'; 
 
 function LoginPage({ onLogin }) {
+  $(".sucesso").hide();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -28,10 +31,14 @@ function LoginPage({ onLogin }) {
 
     } catch (error) {
       console.error('Login error:', error);
+      $(".sucesso").html("Login não encontrado!");
+      $(".sucesso").delay(10).fadeIn().delay(2000).fadeOut();
     }
   };
 
   return (
+    <>
+    <div className="sucesso"></div>
     <div className='login-container'>
       <div className="login-form">
         <Logo />
@@ -48,6 +55,7 @@ function LoginPage({ onLogin }) {
         Não possui uma conta? Clique <a href="/register">aqui</a> para se registrar
       </p>
     </div>
+    </>
   );
 }
 
