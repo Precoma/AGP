@@ -26,9 +26,15 @@ alunos e professores, o CRUD das matérias, das atividades e dos avisos pelos pr
 a visualização das matérias e das atividades que compõem essa matéria, visualização das
 atividades pendentes e concluídas pelos alunos e designação da atividade como concluída.
 
+## Conectar-se ao AGP
+
+O projeto pode ser acessado e utilizado pelo seguinte link (IP não se alterará):
+
+54.80.116.118:3000
+
 ## Instruções de instalação e configuração
 
-Para implantar a AGP em seu sistema, é necessário a realização dos seguintes downloads no sistema que executará o projeto:
+Caso queira implantar a AGP em seu sistema, é necessário a realização dos seguintes downloads no sistema que executará o projeto:
 - Java e JDK
 - NodeJS
 - MySQL
