@@ -42,11 +42,7 @@ para configurar o servidor conforme necessário e escalar manualmente.
 - AWS RDS: Para o gerenciamento dos bancos de dados do sistema. Utilizamos
 bancos relacionais, e o RDS pode nos auxiliar oferecendo backups automáticos,
 recuperação, escalabilidade e monitoramento.
-- Amazon CloudFront: Para distribuir conteúdos estáticos (React) com baixa
-latência em escala global, o CloudFront acelera o carregamento de páginas para
-usuários finais.
-- AWS IAM (Identity and Access Management): Controla as permissões e gerencia
-os acessos, fundamental para garantir segurança no acesso aos recursos AWS.
+- AWS AutoScaling: Para prevenir custos desnecessários da aplicação, tanto das instâncias quanto do banco de dados RDS
 - Amazon CloudWatch: Para monitorar métricas de desempenho e definir alertas
 para a infraestrutura e o aplicativo, sendo ideal para monitorar o ambiente da
 aplicação Java e React.
@@ -54,7 +50,7 @@ aplicação Java e React.
 
 ## Diagrama de arquitetura do Projeto na AWS
 
-![Diagrama sem nome drawio](https://github.com/user-attachments/assets/16cc9660-d374-4693-abff-be5746380cc7)
+![DiagramaArquiteturaAWS drawio](https://github.com/user-attachments/assets/8964d260-94c3-4a52-9969-1070478d8572)
 
 O diagrama demonstra que utilizamos duas instâncias do EC2 separadas, uma para o
 backend e outra para o frontend, que estão conectadas entre si. O Backend da aplicação é conectado com o banco
