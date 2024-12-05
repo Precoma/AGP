@@ -39,7 +39,7 @@ Caso queira implantar a AGP em seu sistema, é necessário a realização dos se
 - NodeJS
 - MySQL
 
-É necessário a instalação destes softwares para implementação tanto local quanto na núvem (AWS).
+É necessário a instalação destes softwares para implementação tanto local quanto na núvem (AWS). Instruções com detalhes de como realizar a implantação podem ser visualizadas no arquivo "AGP - Guia de Implantação", localizado em AGP\Desenvolvimento\5.Implantacao
 
 ## Componentes implementados na AWS
 
