@@ -30,7 +30,7 @@ atividades pendentes e concluídas pelos alunos e designação da atividade como
 
 O projeto pode ser acessado e utilizado pelo seguinte link (IP não se alterará):
 
-54.80.116.118:3000
+http://44.199.1.220:3000
 
 ## Instruções de instalação e configuração
 
