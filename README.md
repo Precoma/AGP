@@ -6,8 +6,7 @@ A AGP é um sistema de agenda pessoal que busca ser uma ferramenta que
 permitirá aos alunos gerenciarem suas matérias e atividades de forma eficiente, com
 auxílio dos professores. Com esta agenda, os professores poderão cadastrar as matérias
 que lecionam, as atividades destas matérias e avisos para os alunos. Os alunos, por outro
-lado, poderão visualizar todas as poderão visualizar todas essas matérias, atividades e
-avisos cadastrados, além das atividades que estão pendentes para serem realizadas. A
+lado, poderão visualizar  todas essas matérias, atividades e avisos cadastrados, além das atividades que estão pendentes para serem realizadas. A
 interface permitirá que os alunos e professores façam seu cadastro e login, além de
 visualizarem todas as matérias e atividades registradas, facilitando o acompanhamento do
 cronograma acadêmico. Além disso, as atividades que ainda precisam ser concluídas
