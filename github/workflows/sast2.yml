@@ -3,17 +3,9 @@ Start-CodeScan -pfcond "medium"
 
 # SAST Example - Scan a remote project repository
 $MyProject = @{
-  target = 'https://github.com/syhunt/vulnphp.git';
+  target = 'https://https://github.com/Precoma/AGP';
   branch = 'main';
   pfcond = 'medium';
   output = 'report.pdf'
 }
 Start-CodeScan @MyProject
-
-# DAST Example - Scan URL
-$MyWebsite= @{
-  target = 'https://www.somewebsite.com';
-  pfcond = 'medium';
-  output = 'report.pdf'
-}
-Start-DynamicScan @MyWebsite
